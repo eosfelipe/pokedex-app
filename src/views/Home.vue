@@ -25,10 +25,9 @@
               </h5>
               <p class="small text-muted mb-0">Base EXP: {{ pokemon.base_experience }}</p>
               <div
-                class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4"
-              >
-                <div class="badge badge-danger px-3 rounded-pill font-weight-normal">type 1</div>
-                <div class="badge badge-success px-3 rounded-pill font-weight-normal">type 2</div>
+                class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                <div class="badge badge-info px-3 rounded-pill font-weight-normal" 
+                v-for="(type,index) in pokemon.types" :key="index">{{type.type.name}}</div>
               </div>
             </div>
           </div>
@@ -48,14 +47,14 @@ export default {
   data() {
     return {
       kantoPokemon: [],
-      test: [],
       pokemon: 
       {
         id: String,
         order: String,
         name: String,
         base_experience: String,
-        img: String
+        img: String,
+        types: []
       }
     };
   },
@@ -79,7 +78,6 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.getKantoPokemon();
-      console.log(this.test);
     });
   },
   methods: {
@@ -105,7 +103,7 @@ export default {
         this.pokemon.name = response.data.name;
         this.pokemon.base_experience = response.data.base_experience;
         this.pokemon.img = 'https://pokeres.bastionbot.org/images/pokemon/'+response.data.id+'.png';
-        // this.test.push(this.pokemon);
+        this.pokemon.types = response.data.types;
         this.kantoPokemon.push(this.pokemon);
       } catch (error) {
         console.log(error, "Something went wrong!");
