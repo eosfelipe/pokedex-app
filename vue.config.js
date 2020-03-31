@@ -1,4 +1,4 @@
-// vue.config.js
-module.exports = {
-publicPath: '/pokedex-app/'
-}
+// vue.config.js only production
+// module.exports = {
+// publicPath: '/pokedex-app/'
+// }

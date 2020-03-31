@@ -26,7 +26,7 @@
               <p class="small text-muted mb-0">Base EXP: {{ pokemon.base_experience }}</p>
               <div
                 class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-                <div class="badge badge-info px-3 rounded-pill font-weight-normal" 
+                <div :class="`badge badge-${type.type.name} px-3 rounded-pill font-weight-normal`" 
                 v-for="(type,index) in pokemon.types" :key="index">{{type.type.name}}</div>
               </div>
             </div>
@@ -84,7 +84,7 @@ export default {
     async getKantoPokemon() {
       try {
         const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=151"
+          "https://pokeapi.co/api/v2/pokemon?limit=5"
         );
         response.data.results.forEach(pokemon => {
           this.getPokeData(pokemon);
@@ -116,5 +116,17 @@ export default {
 <style lang="css">
 .pt-70 {
   padding-top: 70px !important;
+}
+.badge-poison {
+  color: #fff;
+  background-color: rgba(128, 0, 128, 0.8);
+}
+.badge-grass {
+  color: #fff;
+  background-color: rgba(40, 148, 26, 0.8);
+}
+.badge-fire {
+  color: #fff;
+  background-color:rgb(190, 9, 9, 0.8);
 }
 </style>

@@ -4,6 +4,9 @@ import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
+
+const github = { template: '<div>github</div>' };
+
 const routes = [
   {
     path: "/",
@@ -18,6 +21,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
+  },
+  {
+    path: "/github",
+    beforeEnter() {location.href = "https://github.com/eosfelipe/pokedex-app"},
+    component: github
   }
 ];
 

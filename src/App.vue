@@ -37,14 +37,12 @@ Gotta Catch 'Em All"
           </b-nav-form>
 
           <b-nav-item>
-            <a href="https://github.com/eosfelipe/pokedex-app" target="_blank">
-              <b-img
-                :src="require('./assets/github.png')"
-                class="d-inline-block align-top"
-                fluid
-                alt="pokeball"
-              ></b-img
-            ></a>
+            <router-link
+              class="octicon"
+              to="/github" 
+              title="Github Organization">
+              <Octicon :icon="markGithub" :scale="2" className="mega-octicon" />
+            </router-link>
           </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
@@ -92,9 +90,15 @@ Gotta Catch 'Em All"
 </template>
 
 <script>
+import Octicon, { markGithub } from 'octicons-vue'
+
 export default {
+  components: {
+    Octicon
+  },
   data() {
     return {
+      markGithub,
       loading: false,
       ano: new Date().getFullYear()
     };
@@ -143,5 +147,27 @@ export default {
 }
 .pt-70 {
   padding-top: 70px !important;
+}
+a.octicon {
+  color: #6c757d;
+}
+a.octicon:hover {
+  color: #5b5f63;
+}
+.octicon .mega-octicon {
+  font: normal normal normal 16px/1 octicons;
+  display: inline-block;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.mega-octicon {
+  font-size: 32px;
+  min-width: 32px;
 }
 </style>
